@@ -10,6 +10,10 @@ function LoginControl() {
 		alert(JSON.stringify(data));
 	}
 
+	function handleInputChange(text, name) {
+		setData({ ...data, [name]: text });
+	}
+
 	return (
 		<Fragment>
 			<h1>Login Controled Form</h1>
@@ -22,10 +26,7 @@ function LoginControl() {
 						type="text"
 						className="input-login"
 						value={data.username}
-						onChange={(e) => {
-							setData({ ...data, username: e.target.value });
-							// setUsername(e.target.value);
-						}}
+						onChange={(e) => handleInputChange(e.target.value, 'username')}
 					/>
 				</label>
 				<label>
@@ -34,10 +35,7 @@ function LoginControl() {
 						type="password"
 						className="input-login"
 						value={data.password}
-						onChange={(e) => {
-							setData({ ...data, password: e.target.value });
-							// setUsername(e.target.value);
-						}}
+						onChange={(e) => handleInputChange(e.target.value, 'password')}
 					/>
 				</label>
 				<button
