@@ -7,9 +7,11 @@ import PetInfo from './components/PetInfo';
 import RandomNumber from './components/RandomNumber';
 import Counter from './components/Counter';
 import Button from './components/Button';
-import persons from './data/persons';
 import Persons from './components/Persons';
 import Reset from './components/Reset';
+import CardNew from './components/CardNew';
+import Login from './components/Login';
+import LoginControl from './components/LoginContol';
 
 const texts = [
 	'click me 1',
@@ -41,6 +43,12 @@ function App() {
 				<p>
 					Edit <code>src/App.js</code> and save to reload.
 				</p>
+				{/* Login  21 раздел - неконтролируемые инпуты в react */}
+				{/* <Login /> */}
+				{/* Login  22 раздел - контролируемые инпуты в react */}
+				<LoginControl />
+				{/* 20 глава - Fragment  */}
+				<CardNew />
 
 				{/* увеличение счетчика при нажатии на кнопки */}
 				<Counter count={count} />

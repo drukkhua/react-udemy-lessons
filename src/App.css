@@ -16,7 +16,7 @@ button:active {
 }
 
 h1 {
-	font-size: 90px;
+	font-size: 70px;
 	margin-top: 20px;
 }
 
@@ -63,6 +63,29 @@ h1 {
 	padding-bottom: 10px;
 }
 
+.form-login {
+	padding: 15px;
+	font-size: 24px;
+	border: 5px lightgrey solid;
+	border-radius: 10px;
+	margin: 15px;
+	padding-bottom: 10px;
+	cursor: pointer;
+}
+
+label {
+	display: block;
+}
+.button-login {
+	font-size: 24px;
+	background-color: chartreuse;
+}
+
+.input-login {
+	margin: 15px;
+	padding: 10px;
+	font-size: 20px;
+}
 .card:hover {
 	background-color: rgba(0, 0, 0, 0.5);
 }
