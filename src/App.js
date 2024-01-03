@@ -9,6 +9,7 @@ import Counter from './components/Counter';
 import Button from './components/Button';
 import persons from './data/persons';
 import Persons from './components/Persons';
+import Reset from './components/Reset';
 
 const texts = [
 	'click me 1',
@@ -24,6 +25,10 @@ function App() {
 	const incrementCount = () => {
 		setCount(count + 1);
 	};
+	const resetCount = () => {
+		setCount(0);
+	};
+	const buttonStyle = { backgroundColor: 'lightgreen' };
 
 	return (
 		<div className="App">
@@ -36,6 +41,34 @@ function App() {
 				<p>
 					Edit <code>src/App.js</code> and save to reload.
 				</p>
+
+				{/* увеличение счетчика при нажатии на кнопки */}
+				<Counter count={count} />
+				<div className="cards">
+					{texts.map((text, index) => {
+						return (
+							<Button
+								onClick={incrementCount}
+								text={text}
+								key={index - 100}
+							/>
+						);
+					})}
+				</div>
+				{/* кнопка по уроку Udemy, count=0 не отображает - РАЗДЕЛ-19*/}
+				<Reset
+					count={count}
+					onClick={resetCount}
+				/>
+
+				{/* кнопка сброса счетчика мой варианат - РАЗДЕЛ-19 */}
+				<Button
+					onClick={resetCount}
+					text={`Reset - My version: ${count}`}
+					key={10005}
+				/>
+
+				{/* прорисовка массива Persons обобъектов 50 шт.*/}
 				<Persons />
 				{/* {persons.map((person) => {
 					return (
@@ -45,19 +78,6 @@ function App() {
 						/>
 					);
 				})} */}
-
-				<Counter count={count} />
-
-				{texts.map((text, index) => {
-					return (
-						<Button
-							onClick={incrementCount}
-							text={text}
-							key={index - 100}
-						/>
-					);
-				})}
-
 				{/* <Button
 					onClick={incrementCount}
 					text="click me 1"
@@ -74,10 +94,11 @@ function App() {
 					onClick={incrementCount}
 					text="click me 4"
 				/> */}
-
+				{/* генерация случайного числа от 0 до 1000 */}
 				<RandomNumber maxNum={1000} />
 				<MyComponent />
 				<OtherComponent />
+				{/* простое использование передачи параметров */}
 				<PetInfo
 					animal={'dog'}
 					age={5}

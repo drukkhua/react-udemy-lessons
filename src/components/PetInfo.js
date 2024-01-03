@@ -6,6 +6,7 @@
 // 	return <h1>{text}</h1>;
 // }
 
+// Использование тернарного оператора при генерации компонентп
 function PetInfo(props) {
 	const { animal, age, hasPet } = props;
 	return hasPet ? (
