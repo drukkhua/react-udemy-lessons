@@ -2,12 +2,14 @@ import Post from './Post';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
+const API_URL = 'https://jsonplaceholder.typicode.com/posts/';
+
 function Posts() {
 	const [posts, setPosts] = useState(null);
 	const [error, setError] = useState('');
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
-		fetch('https://jsonplaceholder.typicode.com/posts/')
+		fetch(API_URL)
 			.then((response) => response.json())
 			.then((json) => setPosts(json))
 			.catch((error) => setError(error.message))
@@ -24,7 +26,6 @@ function Posts() {
 			{isLoading ? (
 				<h1>Loading</h1>
 			) : (
-				posts &&
 				posts.map((post) => {
 					return (
 						<Post
