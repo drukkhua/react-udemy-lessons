@@ -2,17 +2,12 @@ import { Fragment } from 'react';
 import { useState } from 'react';
 
 function LoginControl() {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
+	const [data, setData] = useState({ username: '', password: '' });
 
 	function handleFormSubmit(event) {
 		event.preventDefault();
-		const userData = {
-			username,
-			password,
-		};
-		console.log(userData);
-		alert(JSON.stringify(userData));
+		console.log(data);
+		alert(JSON.stringify(data));
 	}
 
 	return (
@@ -26,9 +21,10 @@ function LoginControl() {
 					<input
 						type="text"
 						className="input-login"
-						value={username}
+						value={data.username}
 						onChange={(e) => {
-							setUsername(e.target.value);
+							setData({ ...data, username: e.target.value });
+							// setUsername(e.target.value);
 						}}
 					/>
 				</label>
@@ -37,9 +33,10 @@ function LoginControl() {
 					<input
 						type="password"
 						className="input-login"
-						value={password}
+						value={data.password}
 						onChange={(e) => {
-							setPassword(e.target.value);
+							setData({ ...data, password: e.target.value });
+							// setUsername(e.target.value);
 						}}
 					/>
 				</label>
