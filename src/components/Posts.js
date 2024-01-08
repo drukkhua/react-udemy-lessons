@@ -5,20 +5,24 @@ import { useState } from 'react';
 const API_URL = 'https://jsonplaceholder.typicode.com/posts/';
 
 function Posts() {
-    const [posts, setPosts] = useState(null);
-    const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(as() => {
-            try {
-                const res = await fetch(API_URL);
-                const posts = await res.json();
-                setPosts(posts);
-            } catch (error) {
-                setError(error.message);
-            }
-            setIsLoading(false);
-        });
-}
+	const [posts, setPosts] = useState(null);
+	const [error, setError] = useState('');
+	const [isLoading, setIsLoading] = useState(true);
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const res = await fetch(API_URL);
+				const posts = await res.json();
+				setPosts(posts);
+			} catch (error) {
+				setError(error.message);
+			}
+			setIsLoading(false);
+		}
+		fetchData();
+	}, []);
+
+	// вариант через promise
 	// useEffect(() => {
 	// 	fetch(API_URL)
 	// 		.then((response) => response.json())
