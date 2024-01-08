@@ -15,6 +15,7 @@ import Login from './components/Login';
 import LoginControl from './components/LoginContol';
 import Wrapper from './components/wrapper';
 import Posts from './components/Posts';
+import Info from './components/Info';
 
 const texts = [
 	'click me 1',
@@ -56,7 +57,15 @@ function App() {
 				<p>
 					Edit <code>src/App.js</code> and save to reload.
 				</p>
-				<Posts />
+				{/* Раздел 27 - modules.css */}
+				{/* <Info />
+				<div className="info">
+					<h1>App component heading</h1>
+					<button className="my-bytton">App component button</button>
+				</div> */}
+				{/* 23 раздел - асинхронные промисы и реализация через asyn await */}
+				{/* <Posts /> */}
+
 				{/* {!!todo && <h1>{todo.title}</h1>} */}
 
 				{/* Login  21 раздел - неконтролируемые инпуты в react */}
