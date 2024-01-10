@@ -16,6 +16,10 @@ import LoginControl from './components/LoginContol';
 import Wrapper from './components/wrapper';
 import Posts from './components/Posts';
 import Info from './components/Info';
+import TodoForm from './components/Todos/TodoForm';
+import TodoList from './components/Todos/TodoList';
+import { v4 as uuidv4 } from 'uuid';
+import TodosActions from './components/Todos/TodosActions';
 
 const texts = [
 	'click me 1',
@@ -46,6 +50,42 @@ function App() {
 	};
 	const buttonStyle = { backgroundColor: 'lightgreen' };
 
+	// #28 - TODO_APP
+	const [todos, setTodos] = useState([]);
+
+	const addTodoHandler = (text) => {
+		const newTodo = {
+			text: text,
+			isCompleted: false,
+			id: uuidv4(),
+		};
+		setTodos([...todos, newTodo]);
+	};
+	const deleteTodoHandler = (id) => {
+		setTodos(todos.filter((todo) => todo.id !== id));
+	};
+
+	const togleTodoHandler = (id) => {
+		setTodos(
+			todos.map((todo) =>
+				todo.id === id
+					? { ...todo, isCompleted: !todo.isCompleted }
+					: { ...todo }
+			)
+		);
+	};
+
+	const deleteCompletedHandler = () => {
+		setTodos(todos.filter((todo) => !todo.isCompleted));
+	};
+
+	const resetTodosHandler = () => {
+		setTodos([]);
+	};
+	const comletedTodosCount = todos.filter(
+		(todo) => todo.isCompleted
+	).length;
+
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -57,6 +97,31 @@ function App() {
 				<p>
 					Edit <code>src/App.js</code> and save to reload.
 				</p>
+
+				{/* TODO_App #28 */}
+				<h1>Todo App</h1>
+				<TodoForm addTodo={addTodoHandler} />
+
+				{!!todos.length && (
+					<TodosActions
+						deleteCompleted={deleteCompletedHandler}
+						resetTodos={resetTodosHandler}
+						completedTodosExist={!!comletedTodosCount}
+					/>
+				)}
+				<TodoList
+					todos={todos}
+					deleteTodo={deleteTodoHandler}
+					togleTodo={togleTodoHandler}
+				/>
+
+				{comletedTodosCount > 0 && (
+					<h3>
+						You have completed {comletedTodosCount} todo
+						{comletedTodosCount > 1 ? 's' : ''}.
+					</h3>
+				)}
+
 				{/* Раздел 27 - modules.css */}
 				{/* <Info />
 				<div className="info">

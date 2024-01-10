@@ -1,8 +1,6 @@
 import './Info.css';
 import styles from './Info.module.css';
 
-console.log(styles);
-
 function Info() {
 	return (
 		<div className={styles.info}>
