@@ -82,9 +82,7 @@ function App() {
 	const resetTodosHandler = () => {
 		setTodos([]);
 	};
-	const comletedTodosCount = todos.filter(
-		(todo) => todo.isCompleted
-	).length;
+	const comletedTodosCount = todos.filter((todo) => todo.isCompleted).length;
 
 	return (
 		<div className="App">
