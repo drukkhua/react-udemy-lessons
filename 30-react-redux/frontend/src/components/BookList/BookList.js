@@ -3,18 +3,25 @@ import { useDispatch } from 'react-redux';
 import { BsBookmarkStarFill, BsBookmarkStar } from 'react-icons/bs';
 import './BookList.css';
 import { deleteBook, toggleFavorite } from '../../redux/books/actionCreators';
-import { selectTitleFilter } from '../../redux/slices/filterSlice';
+import {
+	selectTitleFilter,
+	selectAuthorFilter,
+} from '../../redux/slices/filterSlice';
 
 function BookList() {
 	const books = useSelector((state) => state.books);
 	const titleFilter = useSelector(selectTitleFilter);
+	const authorFilter = useSelector(selectAuthorFilter);
 	const dispatch = useDispatch();
 	// фильтр книг содержащих title в поле Filter, '' => вернет всегда true
 	const filteredBooks = books.filter((book) => {
 		const matchesTitle = book.title
 			.toLowerCase()
 			.includes(titleFilter.toLowerCase());
-		return matchesTitle;
+		const matchesAuthor = book.author
+			.toLowerCase()
+			.includes(authorFilter.toLowerCase());
+		return matchesTitle && matchesAuthor;
 	});
 	const handleDeleteBook = (id) => {
 		dispatch(deleteBook(id));

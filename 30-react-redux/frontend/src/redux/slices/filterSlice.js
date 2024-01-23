@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	title: '',
-	// author: '',
+	author: '',
 	// onlyFavorite: false,
 };
 
 const filterSlice = createSlice({
-	name: 'filter', // это название пойдет в поле type: filterSlice.actions.setTitleFilter()
+	name: 'filter', // это название пойдет в state.filter и поле type: filterSlice.actions.setTitleFilter()
 	initialState,
 	reducers: {
 		setTitleFilter: (state, action) => {
@@ -21,10 +21,15 @@ const filterSlice = createSlice({
 		resetFilters: (state) => {
 			return initialState;
 		},
+		setAuthorFilter: (state, action) => {
+			state.author = action.payload;
+		},
 	},
 });
-export const { setTitleFilter, resetFilters } = filterSlice.actions;
+export const { setTitleFilter, resetFilters, setAuthorFilter } =
+	filterSlice.actions;
 // const setTitleFilter = filterSlice.actions.setTitleFilter.setTitleFilter;  => аналог строки выше
 //selectTitleFilter -> возьмет в состоянии redux.store текущее значение filter.title
 export const selectTitleFilter = (state) => state.filter.title;
+export const selectAuthorFilter = (state) => state.filter.author;
 export default filterSlice.reducer;
