@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	title: '',
 	author: '',
-	// onlyFavorite: false,
+	onlyFavorite: false,
 };
 
 const filterSlice = createSlice({
@@ -18,18 +18,26 @@ const filterSlice = createSlice({
 			// You can also retur new state  as usually
 			// return { ...state, title: action.payload };
 		},
-		resetFilters: (state) => {
+		resetFilters: () => {
 			return initialState;
 		},
 		setAuthorFilter: (state, action) => {
 			state.author = action.payload;
 		},
+		setOnlyFaviriteFilter: (state) => {
+			state.onlyFavorite = !state.onlyFavorite;
+		},
 	},
 });
-export const { setTitleFilter, resetFilters, setAuthorFilter } =
-	filterSlice.actions;
+export const {
+	setTitleFilter,
+	resetFilters,
+	setAuthorFilter,
+	setOnlyFaviriteFilter,
+} = filterSlice.actions;
 // const setTitleFilter = filterSlice.actions.setTitleFilter.setTitleFilter;  => аналог строки выше
 //selectTitleFilter -> возьмет в состоянии redux.store текущее значение filter.title
 export const selectTitleFilter = (state) => state.filter.title;
 export const selectAuthorFilter = (state) => state.filter.author;
+export const selectOnlyFavoriteFilter = (state) => state.filter.onlyFavorite;
 export default filterSlice.reducer;

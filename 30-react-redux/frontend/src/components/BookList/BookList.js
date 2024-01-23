@@ -6,12 +6,14 @@ import { deleteBook, toggleFavorite } from '../../redux/books/actionCreators';
 import {
 	selectTitleFilter,
 	selectAuthorFilter,
+	selectOnlyFavoriteFilter,
 } from '../../redux/slices/filterSlice';
 
 function BookList() {
 	const books = useSelector((state) => state.books);
 	const titleFilter = useSelector(selectTitleFilter);
 	const authorFilter = useSelector(selectAuthorFilter);
+	const onlyFavoriteFilter = useSelector(selectOnlyFavoriteFilter);
 	const dispatch = useDispatch();
 	// фильтр книг содержащих title в поле Filter, '' => вернет всегда true
 	const filteredBooks = books.filter((book) => {
@@ -21,7 +23,9 @@ function BookList() {
 		const matchesAuthor = book.author
 			.toLowerCase()
 			.includes(authorFilter.toLowerCase());
-		return matchesTitle && matchesAuthor;
+		// const matchesFavorite = !onlyFavoriteFilter || book.isFavorite;
+		const matchesFavorite = onlyFavoriteFilter ? book.isFavorite : true;
+		return matchesTitle && matchesAuthor && matchesFavorite;
 	});
 	const handleDeleteBook = (id) => {
 		dispatch(deleteBook(id));
